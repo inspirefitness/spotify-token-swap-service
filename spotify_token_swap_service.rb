@@ -187,8 +187,7 @@ module SpotifyTokenSwapService
     # POST /status
     # returns a 200
     get "/status" do
-      begin
-        halt 200
+      [200, {}, "Service online"]
     end
 
     # POST /token
