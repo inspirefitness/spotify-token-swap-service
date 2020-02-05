@@ -184,6 +184,13 @@ module SpotifyTokenSwapService
 
     helpers ConfigHelper
 
+    # POST /status
+    # returns a 200
+    get "/status" do
+      begin
+        halt 200
+    end
+
     # POST /token
     # Convert an authorization code to an access token.
     #
