@@ -74,7 +74,7 @@ module SpotifyTokenSwapService
         code: auth_code
       })
 
-      self.class.post("/token", options)
+      self.class.post("/api/token", options)
     end
 
     def refresh_token(refresh_token:)
@@ -83,7 +83,7 @@ module SpotifyTokenSwapService
         refresh_token: refresh_token
       })
 
-      self.class.post("/token", options)
+      self.class.post("/api/token", options)
     end
 
     private
