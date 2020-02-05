@@ -74,7 +74,7 @@ module SpotifyTokenSwapService
         code: auth_code
       })
 
-      self.class.post("/api/token", options)
+      self.class.post("/token", options)
     end
 
     def refresh_token(refresh_token:)
@@ -83,7 +83,7 @@ module SpotifyTokenSwapService
         refresh_token: refresh_token
       })
 
-      self.class.post("/api/token", options)
+      self.class.post("/token", options)
     end
 
     private
@@ -184,12 +184,12 @@ module SpotifyTokenSwapService
 
     helpers ConfigHelper
 
-    # POST /api/token
+    # POST /token
     # Convert an authorization code to an access token.
     #
     # @param code The authorization code sent from accounts.spotify.com
     #
-    post "/api/token" do
+    post "/token" do
       begin
         http = HTTP.new.token(auth_code: params[:code])
         status_code, response = EncryptionMiddleware.new(http).run
@@ -202,12 +202,12 @@ module SpotifyTokenSwapService
       end
     end
 
-    # POST /api/refresh_token
+    # POST /refresh_token
     # Use a refresh token to generate a one-hour access token.
     #
-    # @param refresh_token The refresh token provided from /api/token
+    # @param refresh_token The refresh token provided from /token
     #
-    post "/api/refresh_token" do
+    post "/refresh_token" do
       begin
         refresh_params = DecryptParameters.new(params).run
         http = HTTP.new.refresh_token(refresh_token: refresh_params[:refresh_token])
